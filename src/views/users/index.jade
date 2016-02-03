@@ -1,0 +1,12 @@
+html
+	head
+	body
+		a(href='/') home
+		br
+		a(href='/users/new') 	 new user   
+		br
+		a(href='users/search')     search users
+
+
+		each user in users
+			li name: #{user.firstname}, email: #{user.email}
