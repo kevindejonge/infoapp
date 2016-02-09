@@ -1,0 +1,18 @@
+html
+	head
+		script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+	body
+		a(href='/') home
+		
+		form(id ="searchbar" action='searchbar' method='post')
+			label firstname
+			input(name='firstname')
+			input(type='submit' value='find user')
+			br
+			label lastname
+			input(name='lastname')
+			input(type='submit' value='find user')
+			br
+		
+
+			li name: #{users.firstname} lastname: #{users.lastname} email: #{users.email}
