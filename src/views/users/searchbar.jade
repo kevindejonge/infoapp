@@ -1,0 +1,41 @@
+html
+	head
+		script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+
+	
+	body
+		a(href='/') home
+		
+		form(id ="searchbar" action='./searchbar' method='post')
+			label firstname
+			input#firstname(name='firstname')
+			input(type='submit' value='find user')
+			p#list
+			br
+			br
+			br
+			br
+			label lastname
+			input#lastname(name='lastname')
+			input(type='submit' value='find user')
+			br
+		
+
+
+		script.
+			$("#firstname").keyup(function(){
+				var fileData = {
+					firstname : $("#firstname").val()
+					}
+				$('#list').empty();
+
+				$.post("/users/searchbar", fileData,function(response, textStatus) {
+
+					for(i = 0; i < response.object.length; i++) {
+					
+						$('#list').append("<p id=" + i + ">" + response.object[i] + "</p>");
+						}			
+					});
+			});
+			
+				

@@ -4,7 +4,7 @@ html
 	body
 		a(href='/') home
 		
-		form(id ="searchbar" action='./searchbar' method='post')
+		form(id ="searchbar" action='searchbar' method='post')
 			label firstname
 			input(name='firstname')
 			input(type='submit' value='find user')
@@ -13,5 +13,6 @@ html
 			input(name='lastname')
 			input(type='submit' value='find user')
 			br
-			
-		li name: #{users}
+		
+
+			li name: #{users.firstname} lastname: #{users.lastname} email: #{users.email}
