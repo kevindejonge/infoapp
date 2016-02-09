@@ -1,9 +1,10 @@
 html
 	head
+		script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
 	body
 		a(href='/') home
 		
-		form(action='./search' method='post')
+		form(id ="searchbar" action='./searchbar' method='post')
 			label firstname
 			input(name='firstname')
 			input(type='submit' value='find user')
@@ -12,4 +13,5 @@ html
 			input(name='lastname')
 			input(type='submit' value='find user')
 			br
-		
+			
+		li name: #{users}
