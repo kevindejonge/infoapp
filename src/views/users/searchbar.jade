@@ -23,12 +23,15 @@ html
 
 
 		script.
+			var timer;
 			$("#firstname").keyup(function(){
 				var fileData = {
 					firstname : $("#firstname").val()
 					}
-				$('#list').empty();
+				clearTimeout(timer);
 
+				$('#list').empty();
+				timer = setTimeout(function() {
 				$.post("/users/searchbar", fileData,function(response, textStatus) {
 
 					for(i = 0; i < response.object.length; i++) {
@@ -36,6 +39,7 @@ html
 						$('#list').append("<p id=" + i + ">" + response.object[i] + "</p>");
 						}			
 					});
+				},300)
 			});
 			
 				
