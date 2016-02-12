@@ -6,21 +6,12 @@ html
 	body
 		a(href='/') home
 		
-		form(id ="searchbar" action='./searchbar' method='post')
-			label firstname
-			input#firstname(name='firstname')
-			input(type='submit' value='find user')
+		form(id ="searchbar" action='./search' method='post')
+			label firstname or lastname
+			input#firstname(name='firstname' autocomplete="off")
+			input#submit(type='submit' value='find user')
 			p#list
-			br
-			br
-			br
-			br
-			label lastname
-			input#lastname(name='lastname')
-			input(type='submit' value='find user')
-			br
 		
-
 
 		script.
 			var timer;

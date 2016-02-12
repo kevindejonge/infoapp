@@ -45,7 +45,9 @@ app.post('/users/searchbar', bodyParser.urlencoded({
 			var count = 0;
 			for (var i = 0; i < parsedData.length; i++) {
 				var babam = parsedData[i].firstname;
-				var username = babam.toLowerCase();
+				var nonom = parsedData[i].lastname;
+				var username = babam;
+				var lastname = nonom;
 
 				if (username.indexOf(inputname) >= 0) {
 					results.push(babam)
@@ -56,12 +58,29 @@ app.post('/users/searchbar', bodyParser.urlencoded({
 							results = []
 						};
 
+						response.send({
+							object: results
+						});
+					}
+
+				} 
+				if (lastname.indexOf(inputname) >= 0) {
+					results.push(nonom)
+					count++
+
+					if (count === parsedData.length) {
+						if (results.length === parsedData.length) {
+							results = []
+						};
 
 						response.send({
 							object: results
 						});
 					}
-				} else {
+
+				} 
+
+				else {
 					count++
 
 					if (count === parsedData.length) {
@@ -84,6 +103,32 @@ app.post('/users/searchbar', bodyParser.urlencoded({
 	});
 });
 
+app.post('/users/search', bodyParser.urlencoded({
+	extended: true
+}), function(request, response) {
+	fs.readFile('./users.json', function(error, data) {
+		if (error) {
+			console.log(error);
+		}
+
+		var parsedData = JSON.parse(data);
+		var counter = 0;
+
+		for (i = 0; i < parsedData.length; i++) {
+			if (parsedData[i].firstname === request.body.firstname ||
+				parsedData[i].lastname === request.body.firstname) {
+				counter++
+				response.render('users/user', {
+					users: parsedData[i]
+				})
+
+			} else if (i === parsedData.length - 1 && counter === 0) {
+				console.log('/user/what')
+				response.render('users/what')
+			}
+		};
+	});
+});
 
 app.get('/users/new', function(request, response) {
 	response.render('users/new');
